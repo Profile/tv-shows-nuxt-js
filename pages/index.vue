@@ -4,7 +4,7 @@
       <h1 class="mt-4 mb-3">{{ pageTitle }}</h1>
       <b-row v-if="popularTvShows?.length" align-v="start">
         <b-col cols="3" v-for="tvShow in popularTvShows" :key="tvShow.id">
-          <Article :tv-show='tvShow' />
+          <Article :tv-show="tvShow" />
         </b-col>
       </b-row>
     </b-container>
@@ -35,8 +35,11 @@ export default {
       return {
         popularTvShows,
       }
-    } catch (e) {
-      console.log(e)
+    } catch {
+      error({
+        statusCode: 504,
+        message: "Something is wrong :'(",
+      })
     }
   },
 }

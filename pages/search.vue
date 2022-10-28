@@ -2,25 +2,31 @@
   <div>
     <b-container>
       <h1 class="mt-4 mb-3">{{ pageTitle }}</h1>
-      <b-row v-if="popularTvShows?.length" align-v="start">
-        <b-col cols="3" v-for="tvShow in popularTvShows" :key="tvShow.id">
-          <Article :tv-show='tvShow' />
+      <b-row v-if="tvShows?.length" align-v="start">
+        <b-col cols="3" v-for="tvShow in tvShows" :key="tvShow.show.id">
+          <Article :tv-show="tvShow.show" />
         </b-col>
       </b-row>
+      <template v-else>
+        <p>Pardon us, but no shows matching your query were found.</p>
+        <nuxt-link to="/" title="not found Go homepage">
+          Go homepage
+        </nuxt-link>
+      </template>
     </b-container>
   </div>
 </template>
 
 <script>
-import { getPopularShows } from '~/services/tvMazeAPI'
+import { getSearchedShows } from '~/services/tvMazeAPI'
 import Article from '~/components/Article'
 
 export default {
-  name: 'IndexPage',
+  name: 'SearchPage',
   components: { Article },
   data() {
     return {
-      pageTitle: 'Popular Tv Shows',
+      pageTitle: `Results For: ${this.$route.query.q}`,
     }
   },
   head() {
@@ -28,15 +34,19 @@ export default {
       title: this.pageTitle,
     }
   },
-  async asyncData({ error }) {
+  async asyncData({ route, error }) {
     try {
-      const popularTvShows = await getPopularShows()
+      const { q } = route.query
+      const tvShows = await getSearchedShows(q)
 
       return {
-        popularTvShows,
+        tvShows,
       }
-    } catch (e) {
-      console.log(e)
+    } catch {
+      error({
+        statusCode: 504,
+        message: "Something is wrong :'(",
+      })
     }
   },
 }
