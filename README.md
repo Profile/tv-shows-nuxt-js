@@ -1,3 +1,8 @@
+##[For React.js + Typescript version](https://github.com/Profile/tv-shows-react-js).
+
+## Tech stack:
+### Nuxt.js + Bootstrap-vue.
+
 # tv-shows-nuxt-js
 
 ## Build Setup
