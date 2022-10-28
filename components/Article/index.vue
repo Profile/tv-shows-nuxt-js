@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/article/${tvShow.id}`" :title="tvShow.name">
+  <nuxt-link :to="link ? link : `/article/${tvShow.id}`" :title="tvShow.name">
     <b-card
       body-class="article"
       :title="tvShow.name"
@@ -10,7 +10,7 @@
       class="mb-3"
     >
       <b-card-text>
-        {{ tvShow.genres.join(', ') }}
+        {{ tvShow.genres?.join(', ') }}
       </b-card-text>
     </b-card>
   </nuxt-link>
@@ -19,6 +19,7 @@
 export default {
   name: 'Article',
   props: {
+    link: String,
     tvShow: {
       id: Number,
       name: String,
@@ -30,9 +31,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.article {
-  height: 150px;
-}
-</style>
