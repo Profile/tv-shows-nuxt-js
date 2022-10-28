@@ -30,3 +30,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.article {
+  height: 150px;
+}
+</style>
