@@ -1,7 +1,12 @@
 ##[For React.js + Typescript version](https://github.com/Profile/tv-shows-react-js).
 
 ## Tech stack:
-### Nuxt.js + Bootstrap-vue.
+
+#### 1. Nuxt.js.
+#### 2. Bootstrap-vue.
+#### 3. Prettier.
+#### 4. Commit lint.
+#### 5. Style lint.
 
 # tv-shows-nuxt-js
 

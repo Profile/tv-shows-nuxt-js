@@ -1,5 +1,5 @@
-import { TV_MAZE_API_URL } from '~/.github/config/tvMazeAPI'
 import { $fetch } from 'ohmyfetch/node'
+import { TV_MAZE_API_URL } from '~/config/tvMazeAPI'
 
 function fetchTvMaze(url, params) {
   return $fetch(url, {
